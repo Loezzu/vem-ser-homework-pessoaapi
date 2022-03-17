@@ -28,9 +28,9 @@ public class EnderecoService {
     @Autowired
     private ObjectMapper objectMapper;
 
-//    @Autowired
-//    private EmailService emailService;
-//
+    @Autowired
+    private EmailService emailService;
+
 
     public EnderecoDTO create(EnderecoCreateDTO enderecoCreate, Integer idPessoa) throws Exception {
         log.info("chamando o método create");
@@ -48,7 +48,7 @@ public class EnderecoService {
 
         PessoaDTO pessoaDTO = objectMapper.convertValue(pessoaRepository.listByIdPessoa(idPessoa), PessoaDTO.class);
 
-//        emailService.sendEmailEndereco(pessoaDTO, enderecoDTO);
+        emailService.sendEmailEndereco(pessoaDTO, enderecoDTO);
 
         return enderecoDTO;
 
@@ -77,7 +77,7 @@ public class EnderecoService {
 
         PessoaDTO pessoaDTO = objectMapper.convertValue(pessoaRepository.listByIdPessoa(id), PessoaDTO.class);
 
-//        emailService.sendEmailUpdateEndereco(pessoaDTO, enderecoDTO);
+        emailService.sendEmailUpdateEndereco(pessoaDTO, enderecoDTO);
 
         return  enderecoDTO;
     }
@@ -90,7 +90,7 @@ public class EnderecoService {
 
         PessoaDTO pessoaDTO = objectMapper.convertValue(pessoaRepository.listByIdPessoa(id), PessoaDTO.class);
 
-//        emailService.sendEmailDeleteEndereco(pessoaDTO, enderecoDTO);
+        emailService.sendEmailDeleteEndereco(pessoaDTO, enderecoDTO);
         
         enderecoRepository.delete(id);
     }
